@@ -7,14 +7,26 @@
         <el-menu-item index="2-1">算法1</el-menu-item>
         <el-menu-item index="2-2">算法2</el-menu-item>
       </el-submenu>
-      <el-menu-item index="3"><router-link to="/profile">个人信息</router-link></el-menu-item>
-      <el-menu-item index="4">退出登录</el-menu-item>
+      <el-menu-item index="3" v-if="loggedIn"><router-link to="/profile">个人信息</router-link></el-menu-item>
+      <el-menu-item index="4" v-if="loggedIn">退出登录</el-menu-item>
+      <el-menu-item index="5" v-if="!loggedIn"><router-link to="/login">登录</router-link></el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script>
+  import auth from '../auth'
   export default ({
+    data () {
+      return {
+        loggedIn: auth.loggedIn()
+      }
+    },
+    created () {
+      auth.onChange = loggedIn => {
+        this.loggedIn = loggedIn
+      }
+    },
     methods: {
       handleSelect(key, keyPath) {
         if (key == 4) {
@@ -22,9 +34,9 @@
         }
       },
       open() {
-        this.$confirm('确认要退出登陆吗', '退出确认', {
+        auth.logout()
+        this.$alert('已经退出登陆', '标题名称', {
           confirmButtonText: '确定',
-          cancelButtonText: '取消',
           callback: action => {
             this.$message({
               type: 'info',
@@ -32,6 +44,7 @@
             });
           }
         });
+        window.location.reload();
       }
     },
 

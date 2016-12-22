@@ -18,15 +18,22 @@
 <script>
 // import firstcomponent from './component/firstcomponent.vue'
 import navigation from './component/navigation.vue'
+import auth from './auth'
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome'
+      loggedIn: auth.loggedIn()
+    }
+  },
+  created () {
+    auth.onChange = loggedIn => {
+      this.loggedIn = loggedIn
     }
   },
   components: { navigation }
 }
+
 </script>
 
 <style>

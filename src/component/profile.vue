@@ -1,5 +1,5 @@
 <template>
-  <div id = 'profile'>
+  <div id = 'profile' v-if="loggedIn">
       <div id = 'top'>
          <div id = 'profile_icon' >
            <img src="../assets/profile_icon.jpeg"/>
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+  import auth from '../auth'
   export default ({
       data() {
         return {
@@ -62,7 +63,13 @@
           }, {
             title: '简介',
             content: '这是简介'
-          }]
+          }],
+          loggedIn: auth.loggedIn()
+        }
+      },
+      created () {
+        auth.onChange = loggedIn => {
+          this.loggedIn = loggedIn
         }
       },
       methods: {

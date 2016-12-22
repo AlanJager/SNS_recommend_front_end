@@ -20,6 +20,20 @@ const First = { template: '<div><h2>我是第 1 个子页面</h2></div>' }
 import secondcomponent from './component/secondcomponent.vue'
 import profile from './component/profile.vue'
 import index from './component/index.vue'
+import login from './component/login.vue'
+import auth from './auth'
+
+function requireAuth (to, from, next) {
+  if (!auth.loggedIn()) {
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  } else {
+    next()
+  }
+}
+
 // 创建一个路由器实例
 // 并且配置路由规则
 const router = new VueRouter({
@@ -28,20 +42,31 @@ const router = new VueRouter({
   routes: [
     {
       path: '/first',
-      component: First
+      component: First,
+      beforeEnter: requireAuth
     },
     {
       path: '/second',
-      component: secondcomponent
+      component: secondcomponent,
+      beforeEnter: requireAuth
     },
     {
       path: '/profile',
-      component: profile
+      component: profile,
+      beforeEnter: requireAuth
     },
     {
       path: '/index',
       component: index
-    }
+    },
+    {
+      path: '/login',
+      component: login
+    },
+    {
+      path: '',
+      component: index
+    },
   ]
 })
 
