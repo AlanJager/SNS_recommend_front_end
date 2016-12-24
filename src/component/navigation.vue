@@ -7,6 +7,7 @@
         <el-menu-item index="2-1"><router-link to="/recommend">算法1</router-link></el-menu-item>
         <el-menu-item index="2-2">算法2</el-menu-item>
       </el-submenu>
+      <el-menu-item index="6" v-if="loggedIn"><router-link to="/rating_result">我的评价</router-link></el-menu-item>
       <el-menu-item index="3" v-if="loggedIn"><router-link to="/profile">个人信息</router-link></el-menu-item>
       <el-menu-item index="4" v-if="loggedIn">退出登录</el-menu-item>
       <el-menu-item index="5" v-if="!loggedIn"><router-link to="/login">登录</router-link></el-menu-item>
