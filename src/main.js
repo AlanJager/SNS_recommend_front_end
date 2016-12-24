@@ -21,6 +21,9 @@ import secondcomponent from './component/secondcomponent.vue'
 import profile from './component/profile.vue'
 import index from './component/index.vue'
 import login from './component/login.vue'
+import rating from './component/rating.vue'
+import rating_result from './component/rating_result.vue'
+import recommend from './component/recommend.vue'
 import auth from './auth'
 
 function requireAuth (to, from, next) {
@@ -66,6 +69,21 @@ const router = new VueRouter({
     {
       path: '',
       component: index
+    },
+    {
+      path: '/rating',
+      component: rating,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/rating_result',
+      component: rating_result,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/recommend',
+      component: recommend,
+      beforeEnter: requireAuth
     },
   ]
 })
