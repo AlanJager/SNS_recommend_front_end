@@ -9,7 +9,6 @@
       <router-link to="/second">Go to first</router-link>
     </p> -->
     <!-- 路由出口 -->
-
     <router-view></router-view>
     <!-- <firstcomponent></firstcomponent> -->
   </div>
@@ -19,6 +18,8 @@
 // import firstcomponent from './component/firstcomponent.vue'
 import navigation from './component/navigation.vue'
 import auth from './auth'
+
+
 export default {
   name: 'app',
   data () {

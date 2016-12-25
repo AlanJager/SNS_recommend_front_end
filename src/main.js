@@ -24,6 +24,7 @@ import login from './component/login.vue'
 import rating from './component/rating.vue'
 import rating_result from './component/rating_result.vue'
 import recommend from './component/recommend.vue'
+import transE_chart from './component/transE_chart.vue'
 import auth from './auth'
 
 function requireAuth (to, from, next) {
@@ -85,6 +86,10 @@ const router = new VueRouter({
       component: recommend,
       beforeEnter: requireAuth
     },
+    {
+      path: '/chart',
+      component: transE_chart
+    }
   ]
 })
 
