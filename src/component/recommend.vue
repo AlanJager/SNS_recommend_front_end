@@ -70,6 +70,7 @@
 
 <script>
   import auth from '../auth'
+  import data from "../store/data"
   export default({
     data() {
         return {
@@ -78,19 +79,7 @@
             timeout:  null,
             currentDate: new Date(),
             loggedIn: auth.loggedIn(),
-            infos:  [{
-              name: '叶伟才',
-              content: 'no',
-              icon: require("../assets/yeweicai.jpg")
-            }, {
-              name: '邹烨',
-              content: 'no',
-              icon: require("../assets/zouye.jpg")
-            }, {
-              name: '王树根',
-              content: 'no',
-              icon: require("../assets/wangshugen.jpg")
-            }]
+            infos: data.defaultInfo
           };
         },
         created () {

@@ -9,6 +9,7 @@
       </el-submenu>
       <el-menu-item index="6" v-if="loggedIn"><router-link to="/rating_result">我的评价</router-link></el-menu-item>
       <el-menu-item index="3" v-if="loggedIn"><router-link to="/profile">个人信息</router-link></el-menu-item>
+      <el-menu-item index="7" v-if="loggedIn"><router-link to="/chart">模型统计</router-link></el-menu-item>
       <el-menu-item index="4" v-if="loggedIn">退出登录</el-menu-item>
       <el-menu-item index="5" v-if="!loggedIn"><router-link to="/login">登录</router-link></el-menu-item>
     </el-menu>

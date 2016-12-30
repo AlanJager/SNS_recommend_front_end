@@ -67,29 +67,12 @@
 
 <script>
   import auth from '../auth'
+  // import data from "../data"
+  import data from "../store/data"
   export default ({
     data() {
          return {
-           tableData: [{
-             date: '2016-05-02',
-             name: '王小虎',
-             allvalue: '不错',
-             specificvalue:"能准确反映推荐合理"
-           }, {
-             date: '2016-05-04',
-             name: '王小虎',
-             allvalue: '不错'
-           }, {
-             date: '2016-05-01',
-             name: '王小虎',
-             allvalue: '不错',
-             specificvalue:"能准确反映推荐合理"
-           }, {
-             date: '2016-05-03',
-             name: '王小虎',
-             allvalue: '不错',
-             specificvalue:"能准确反映推荐合理"
-           }],
+           tableData: data.state.ratingResults,
            loggedIn: auth.loggedIn()
          }
        },
@@ -107,6 +90,7 @@
          },
          handleDelete(index, row) {
            row.splice(index, 1);
+           data.state.ratingResults.splice(index, 1);
            console.log(index, row);
          }
        }

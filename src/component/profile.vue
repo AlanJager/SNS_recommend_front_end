@@ -48,22 +48,11 @@
 
 <script>
   import auth from '../auth'
+  import data from "../store/data"
   export default ({
       data() {
         return {
-          tableData: [{
-            title: '登陆名',
-            content: 'zz'
-          }, {
-            title: '昵称',
-            content: '222'
-          }, {
-            title: '邮箱',
-            content: 'fdfd@test.com'
-          }, {
-            title: '简介',
-            content: '这是简介'
-          }],
+          tableData: data.state.profileInfo,
           loggedIn: auth.loggedIn()
         }
       },
@@ -74,12 +63,12 @@
       },
       methods: {
         handleEdit(index, row) {
-          console.log(index, row);
           this.$prompt('请输入新' + row.title, '更新' + row.title, {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
           }).then(({ value }) => {
             row.content = value;
+            data.state.profileInfo[row.title] = value;
             this.$message({
               type: 'success',
               message: '你的' + row.title + '是: ' + value
