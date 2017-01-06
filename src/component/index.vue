@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <h1>I am a title.</h1>
+    <h1>Welcome to SNRS.</h1>
     <p> written <a class='author' href="https://github.com/AlanJager">{{ author_1 }}</a> &  <a class='author' href="https://github.com/ywcmaike">{{ author_2 }}</a> </p>
   </div>
 </template>

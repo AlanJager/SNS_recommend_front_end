@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
+// import jasmine from 'jasmine'
 import 'element-ui/lib/theme-default/index.css'
 import VueRouter from "vue-router";
 import VueResource from 'vue-resource'
@@ -25,6 +26,9 @@ import rating from './component/rating.vue'
 import rating_result from './component/rating_result.vue'
 import recommend from './component/recommend.vue'
 import transE_chart from './component/transE_chart.vue'
+import twitter_chart from './component/twitter_chart.vue'
+import weibo_chart from './component/weibo_chart.vue'
+import test from './unit_test'
 import auth from './auth'
 
 function requireAuth (to, from, next) {
@@ -88,7 +92,18 @@ const router = new VueRouter({
     },
     {
       path: '/chart',
-      component: transE_chart
+      component: transE_chart,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/twitter_chart',
+      component: twitter_chart,
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/weibo_chart',
+      component: weibo_chart,
+      beforeEnter: requireAuth
     }
   ]
 })

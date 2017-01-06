@@ -2,67 +2,25 @@
   <div id = 'recommend' v-if="loggedIn">
     <div class="recommend-tab"></div>
     <el-autocomplete
-     v-model="state4"
      :fetch-suggestions="querySearchAsync"
      placeholder="请输入内容"
      @select="handleSelect" width="180"
    ></el-autocomplete>
-     <el-button type="primary" icon="search">搜索</el-button>
      <el-button type="primary" ><router-link id='rating_button' to="/rating">评价</router-link></el-button>
 
 
      <el-row>
-       <el-col :span="8" v-for="info in infos">
+       <el-col class="info" :span="6" v-for="info in infos">
          <el-card :body-style="{ padding: '0px' }">
-           <a href="#"><img :src="info.icon" class="image" width="350" height=""  ></a>
+           <a href="#"><img :src="info.icon" class="image" width="230" height="230"  ></a>
          <div class="grid-content bg-purple">
-           <span>{{info.name}}</span>
+           <span>{{ info.name }}</span>
              <div class="bottom clearfix">
                <time class="time">{{ currentDate }}</time>
                <el-button type="text" class="button">操作按钮</el-button>
              </div>
          </div>
          </el-card>
-       </el-col>
-      <el-col :span="8">
-         <el-card :body-style="{ padding: '0px' }">
-           <a href="#"><img src="../assets/yeweicai.jpg" class="image" width="350" height=""  ></a>
-       <div class="grid-content bg-purple">
-           <span>叶伟才</span>
-             <div class="bottom clearfix">
-               <time class="time">{{ currentDate }}</time>
-               <el-button type="text" class="button">操作按钮</el-button>
-             </div>
-       </div>
-       </el-card>
-       </el-col>
-
-
-       <el-col :span="8">
-       <el-card :body-style="{ padding: '0px' }">
-           <a href="#"><img src="../assets/zouye.jpg" class="image" width="350" height="" ></a>
-       <div class="grid-content bg-purple-light">
-           <span>邹烨</span>
-             <div class="bottom clearfix">
-               <time class="time">{{ currentDate }}</time>
-               <el-button type="text" class="button">操作按钮</el-button>
-             </div>
-       </div>
-       </el-card>
-       </el-col>
-
-
-       <el-col :span="8">
-       <el-card :body-style="{ padding: '0px' }">
-           <a href="#"><img src="../assets/wangshugen.jpg" class="image" width="350" height="" ></a>
-       <div class="grid-content bg-purple">
-           <span>王树根</span>
-             <div class="bottom clearfix">
-               <time class="time">{{ currentDate }}</time>
-               <el-button type="text" class="button">操作按钮</el-button>
-             </div>
-       </div>
-       </el-card>
        </el-col>
     </el-row>
   </div>
@@ -74,12 +32,19 @@
   export default({
     data() {
         return {
-            restaurants: [],
-            state4: '',
-            timeout:  null,
+            uesr_id: [],
+            timeout:  20,
             currentDate: new Date(),
             loggedIn: auth.loggedIn(),
-            infos: data.defaultInfo
+            ref: [
+              {
+              '1878669082': data.state.recommendInfo1,
+              '2625091830': data.state.recommendInfo2,
+              '3236937630': data.state.recommendInfo3,
+              '3860500107': data.state.recommendInfo4,
+              '5294871376': data.state.recommendInfo5,
+            }],
+            infos: data.defaultInfo,
           };
         },
         created () {
@@ -90,19 +55,21 @@
         methods: {
           loadAll() {
             return [
-              { "value": "叶伟才", "address": "长宁区新渔路144号" },
-              { "value": "邹烨", "address": "上海市长宁区淞虹路661号" },
-              { "value": "王树根", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" }
+              { "value": "白菜浪人", "id": "1878669082"},
+              { "value": "努力寻找下巴的王子", "id": "2625091830"},
+              { "value": "锦州首班车", "id": "3236937630"},
+              { "value": "夢遊的棋子", "id": "3860500107"},
+              { "value": "守望先锋趣闻", "id": "5294871376"}
             ];
           },
           querySearchAsync(queryString, cb) {
-            var restaurants = this.restaurants;
-            var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+            var uesr_id = this.uesr_id;
+            var results = queryString ? uesr_id.filter(this.createStateFilter(queryString)) : uesr_id;
 
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
               cb(results);
-            }, 3000 * Math.random());
+            }, 1000 * Math.random());
           },
           createStateFilter(queryString) {
             return (state) => {
@@ -110,11 +77,13 @@
             };
           },
           handleSelect(item) {
-            console.log(item);
+            console.log(item.value)
+            this.infos = this.ref[0][item.id]
+            // this.infos = data.recommendInfo[0][item.value]
           }
         },
         mounted() {
-          this.restaurants = this.loadAll();
+          this.uesr_id = this.loadAll();
         }
   })
 </script>
@@ -125,5 +94,10 @@
 }
 #rating_button {
   color: #ffffff;
+}
+
+.info {
+  height: 350px;
+  weight: 350px;
 }
 </style>

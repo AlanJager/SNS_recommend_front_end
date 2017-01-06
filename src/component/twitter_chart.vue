@@ -1,15 +1,15 @@
 <template>
   <div id = 'chart' v-if="loggedIn">
       <span>main rank</span>
-      <BarChart></BarChart>
+      <TwitterChart></TwitterChart>
       <span>percentage</span>
-      <PercentageChart></PercentageChart>
+      <TwitterPercentageChart></TwitterPercentageChart>
   </div>
 </template>
 <script>
   import auth from '../auth'
-  import BarChart from '../chart/barChart'
-  import PercentageChart from '../chart/percentageChart'
+  import TwitterChart from '../chart/twitterChart'
+  import TwitterPercentageChart from '../chart/twitterPercentageChart'
   export default {
       data() {
         return {
@@ -17,8 +17,8 @@
         }
       },
      components: {
-       BarChart,
-       PercentageChart
+       TwitterChart,
+       TwitterPercentageChart
      },
      created () {
        auth.onChange = loggedIn => {

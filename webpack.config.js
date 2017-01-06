@@ -36,6 +36,9 @@ module.exports = {
       }
     ]
   },
+  node: {
+    fs: "empty"
+  },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.common.js'

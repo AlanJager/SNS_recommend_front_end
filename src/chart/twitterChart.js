@@ -8,17 +8,17 @@ export default Bar.extend({
         {
           label: 'left',
           backgroundColor: '#f87979',
-          data: [223.862, 73.348]
+          data: [43.122, 13.638]
         },
         {
           label: 'right',
           backgroundColor: '#000000',
-          data: [93.394, 37.376]
+          data: [36.532, 12.776]
         },
         {
           label: 'mean',
           backgroundColor: '#aaaaaa',
-          data: [158.628, 55.362]
+          data: [39.827, 13.207]
         }
       ]
     }, {responsive: true, maintainAspectRatio: false})

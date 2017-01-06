@@ -6,14 +6,6 @@
       <el-input v-model="ruleForm.name"></el-input>
     </el-form-item>
 
-    <el-form-item label="评价时间" required>
-      <el-col :span="11">
-        <el-form-item prop="date1">
-          <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
-        </el-form-item>
-      </el-col>
-    </el-form-item>
-
     </el-form-item label="总体评价" prop="desc2">
     <el-form-item>
       <el-rate v-model="value3" show-text >
@@ -32,7 +24,7 @@
 
 <script>
   import auth from '../auth'
-
+  import data from "../store/data"
   export default({
     data() {
         return {
@@ -87,8 +79,18 @@
         handleSubmit(ev) {
           this.$refs.ruleForm.validate((valid) => {
             if (valid) {
-              alert('submit!');
-              window.location.href="rating_result";
+              alert("提交成功");
+              data.state.ratingResults.push({
+                date: "2017-01-07",
+                name: this.ruleForm.name,
+                allvalue: this.value3,
+                specificvalue: this.ruleForm.desc
+              });
+              this.ruleForm.date1 = ''
+              this.ruleForm.name = ''
+              this.value3 = 0
+              this.ruleForm.desc = ''
+              // window.location.href="rating_result";
             } else {
               console.log('error submit!!');
               return false;

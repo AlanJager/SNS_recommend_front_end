@@ -4,7 +4,7 @@
          <div id = 'profile_icon' >
            <img src="../assets/profile_icon.jpeg"/>
            <p id = 'user_name'>
-             这是测试用户
+             AlanJager
            </p>
            <p id = 'mood'>
              一句话介绍一下自己吧，让别人更了解你

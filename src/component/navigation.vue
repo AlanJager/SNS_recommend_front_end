@@ -2,14 +2,19 @@
   <div id = 'navigation'>
     <el-menu theme="dark" default-active="1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1"><router-link to="/index">首页</router-link></el-menu-item>
-      <el-submenu index="2">
+      <el-submenu index="2" v-if="loggedIn">
         <template slot="title">推荐</template>
         <el-menu-item index="2-1"><router-link class='recommend_nav' to="/recommend">算法1</router-link></el-menu-item>
-        <el-menu-item index="2-2">算法2</el-menu-item>
+        <el-menu-item index="2-2">未完成</el-menu-item>
       </el-submenu>
       <el-menu-item index="6" v-if="loggedIn"><router-link to="/rating_result">我的评价</router-link></el-menu-item>
       <el-menu-item index="3" v-if="loggedIn"><router-link to="/profile">个人信息</router-link></el-menu-item>
-      <el-menu-item index="7" v-if="loggedIn"><router-link to="/chart">模型统计</router-link></el-menu-item>
+      <el-submenu index="7" v-if="loggedIn">
+        <template slot="title">模型统计</template>
+        <el-menu-item index="7-1"><router-link class='recommend_nav'  to="/chart">TransE FB15K统计</router-link></el-menu-item>
+        <el-menu-item index="7-2"><router-link class='recommend_nav'  to="/twitter_chart">Twitter 统计</router-link></el-menu-item>
+        <el-menu-item index="7-3"><router-link class='recommend_nav'  to="/weibo_chart">Weibo 统计</router-link></el-menu-item>
+      </el-submenu>
       <el-menu-item index="4" v-if="loggedIn">退出登录</el-menu-item>
       <el-menu-item index="5" v-if="!loggedIn"><router-link to="/login">登录</router-link></el-menu-item>
     </el-menu>

@@ -17,7 +17,7 @@
       <el-table-column
         inline-template
         label="姓名"
-        width="180">
+        width="380">
         <el-popover trigger="hover" placement="top">
           <p>姓名: {{ row.name }}</p>
           <!-- <p>住址: {{ row.address }}</p> -->
@@ -29,7 +29,7 @@
       <el-table-column
         inline-template
         label="评价"
-        width="180">
+        width="380">
         <el-popover trigger="hover" placement="top">
           <p>总体评价: {{ row.allvalue }}</p>
           <p>具体评价: {{ row.specificvalue }}</p>
@@ -43,16 +43,6 @@
         inline-template
         label="操作">
         <div>
-          <el-button
-            size="small"
-            @click="handleRead($index, row)">
-            查看
-          </el-button>
-          <el-button
-            size="small"
-            @click="handleEdit($index, row)">
-            编辑
-          </el-button>
           <el-button
             size="small"
             type="danger"
@@ -75,25 +65,25 @@
            tableData: data.state.ratingResults,
            loggedIn: auth.loggedIn()
          }
-       },
-       created () {
-         auth.onChange = loggedIn => {
-           this.loggedIn = loggedIn
-         }
-       },
-       methods: {
-         handleRead(index, row) {
-           console.log(index, row);
-         },
-         handleEdit(index, row) {
-           console.log(index, row);
-         },
-         handleDelete(index, row) {
-           row.splice(index, 1);
-           data.state.ratingResults.splice(index, 1);
-           console.log(index, row);
-         }
+     },
+     created () {
+       auth.onChange = loggedIn => {
+         this.loggedIn = loggedIn
        }
+     },
+     methods: {
+       handleRead(index, row) {
+         console.log(index, row);
+       },
+       handleEdit(index, row) {
+         console.log(index, row);
+       },
+       handleDelete(index, row) {
+        //  row.splice(index, 1);
+         data.state.ratingResults.splice(index, 1);
+         console.log(index, row);
+       }
+     }
   })
 </script>
 
